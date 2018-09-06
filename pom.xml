@@ -46,13 +46,27 @@
 
     </dependencies>
 
+    <!-- Lecture 56 Add Maven release plugijn -->
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <goals>install</goals>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
+    <!-- Lecture 56 Add scm tag -->
+    <scm>
+        <developerConnection>scm:git:git@github.com:MHTabak/sfg-pet-clinic.git</developerConnection>
+    </scm>
 
 </project>

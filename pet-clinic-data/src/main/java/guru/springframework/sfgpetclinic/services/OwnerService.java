@@ -1,0 +1,20 @@
+package guru.springframework.sfgpetclinic.services;
+
+// Created in lecture 57
+
+
+import guru.springframework.sfgpetclinic.model.Owner;
+
+import java.util.Set;
+
+public interface OwnerService {
+
+    Owner findByLastName(String name);
+
+    Owner findById(Long id);
+
+    Owner save(Owner owner);
+
+    Set<Owner> findAll();
+
+}

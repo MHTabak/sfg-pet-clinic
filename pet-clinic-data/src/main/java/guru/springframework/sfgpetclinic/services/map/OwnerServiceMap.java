@@ -1,13 +1,15 @@
 package guru.springframework.sfgpetclinic.services.map;
 
 // Created Lecture 69
+// Lecture 87 Change to implement OwnerService, instead of CrudService OwnerService
+//    implements CrudService. Add implementation for findByLastName()
 
 import guru.springframework.sfgpetclinic.model.Owner;
-import guru.springframework.sfgpetclinic.services.CrudService;
+import guru.springframework.sfgpetclinic.services.OwnerService;
 
 import java.util.Set;
 
-public class OwnerServiceMap extends AbstractMapService<Owner, Long>  implements CrudService<Owner, Long> {
+public class OwnerServiceMap extends AbstractMapService<Owner, Long>  implements OwnerService {
 
     @Override
     public Set<Owner> findAll() {
@@ -32,6 +34,11 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long>  implements
     @Override
     public void deleteById(Long id) {
         super.deleteById(id);
+    }
+
+    @Override
+    public Owner findByLastName(String lastName) {
+        return null;
     }
 
 }

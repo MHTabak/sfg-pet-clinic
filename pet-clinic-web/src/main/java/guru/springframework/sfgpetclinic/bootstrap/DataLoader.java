@@ -2,7 +2,8 @@ package guru.springframework.sfgpetclinic.bootstrap;
 
 // Created Lecture 87
 // Lecture
-// Lecuture 88, issue 22, get rid of {owner/vet/}.setId() calls.
+// Lecuture 88, issue 22, get rid of {owner/vet/}.setId() calls. This
+//          work is also done in lecture 91
 
 
 import guru.springframework.sfgpetclinic.model.Owner;

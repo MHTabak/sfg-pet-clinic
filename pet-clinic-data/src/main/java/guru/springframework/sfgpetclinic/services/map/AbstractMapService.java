@@ -2,7 +2,9 @@ package guru.springframework.sfgpetclinic.services.map;
 
 // Lecture 69 Created
 // Lecture 88, Issue 22 Refactor Changed the ID to be Long or something
-//    that extends Long, and BAseEntitu and refactory save()
+//    that extends Long, and BaseEntitu and refactory save() to handle auto
+//    generation of ids to mimic what Hibernate and Spring Data will do
+//    Video lesson repeats this in lecture 91
 
 import guru.springframework.sfgpetclinic.model.BaseEntity;
 
@@ -43,7 +45,8 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
         map.entrySet().removeIf(entry -> entry.getValue().equals(object));
     }
 
-    // Lecture 88, Issue 22 Refactor this to account for empty map. Set id to 1L
+    // Lecture 88, Issue 22 Refactor this to account for empty map. Set id to 1L. This a;sp
+    // covers lecture 91 - auto generation of id values to mimic Hibernate / Spring Data
     private Long getNextId() {
 
         Long nextId = null;

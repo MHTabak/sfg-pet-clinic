@@ -3,8 +3,9 @@ package guru.springframework.sfgpetclinic.services.map;
 // Created Lecture 69
 // Lecture 87. Change to implement PetService, which in turn implements CrudService
 //    Correction to how things were set up.
-// Lecutre 88, issue 22, get rid of object.getId() in param in
+// Lecture 88, issue 22, get rid of object.getId() in param in
 //     super.save(object.getId() , object).
+// Lecture 91 work for this lecture done under lecture 88
 
 import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.services.PetService;

@@ -7,7 +7,7 @@ package guru.springframework.sfgpetclinic.services.map;
 //     super.save(object.getId() , object).
 // Lecture 89 Was missing @Service on this class. Added @Service so Spring will make
 //     this a managed bean and make it available for autowiring
-//
+// Lecture 91 - work for this was done under lecture 88
 
 import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.services.OwnerService;

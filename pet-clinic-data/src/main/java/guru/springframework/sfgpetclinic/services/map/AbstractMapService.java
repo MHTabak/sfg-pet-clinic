@@ -1,17 +1,19 @@
 package guru.springframework.sfgpetclinic.services.map;
 
 // Lecture 69 Created
+// Lecture 88, Issue 22 Refactor Changed the ID to be Long or something
+//    that extends Long, and BAseEntitu and refactory save()
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import guru.springframework.sfgpetclinic.model.BaseEntity;
 
-public abstract class AbstractMapService<T, ID> {
+import java.util.*;
 
-    protected Map<ID, T> map = new HashMap<>();
+public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> {
+
+    protected Map<Long, T> map = new HashMap<>();
 
     Set<T> findAll() {
+        // System.out.println("AbstractMapService... num of owners: " +map.size());
         return new HashSet<>(map.values());
     }
 
@@ -19,9 +21,18 @@ public abstract class AbstractMapService<T, ID> {
         return map.get(id);
     }
 
-    T save(ID id, T object) {
-        map.put(id, object);
+    T save(T object) {
+
+        if(object != null) {
+            if(object.getId() == null){
+                object.setId(getNextId());
+            }
+            map.put(object.getId(), object);
+        } else {
+            throw new RuntimeException("AbstractMapService: object can't be null");
+        }
         return object;
+
     }
 
     void deleteById(ID id) {
@@ -31,4 +42,20 @@ public abstract class AbstractMapService<T, ID> {
     void delete(T object) {
         map.entrySet().removeIf(entry -> entry.getValue().equals(object));
     }
+
+    // Lecture 88, Issue 22 Refactor this to account for empty map. Set id to 1L
+    private Long getNextId() {
+
+        Long nextId = null;
+
+        try {
+            return Collections.max(map.keySet()) + 1;
+        } catch (NoSuchElementException e) {
+            nextId = 1L;
+        }
+
+        return nextId;
+
+    }
+
 }

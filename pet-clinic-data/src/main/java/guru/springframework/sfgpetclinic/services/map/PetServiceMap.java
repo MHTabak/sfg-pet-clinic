@@ -3,6 +3,8 @@ package guru.springframework.sfgpetclinic.services.map;
 // Created Lecture 69
 // Lecture 87. Change to implement PetService, which in turn implements CrudService
 //    Correction to how things were set up.
+// Lecutre 88, issue 22, get rid of object.getId() in param in
+//     super.save(object.getId() , object).
 
 import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.services.PetService;
@@ -23,7 +25,7 @@ public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetS
 
     @Override
     public Pet save(Pet object) {
-        return super.save(object.getId(), object);
+        return super.save(object);
     }
 
     @Override

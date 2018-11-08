@@ -2,15 +2,17 @@ package guru.springframework.sfgpetclinic.bootstrap;
 
 // Created Lecture 87
 // Lecture
-// Lecuture 88, issue 22, get rid of {owner/vet/}.setId() calls. This
+// Lecture 88, issue 22, get rid of {owner/vet/}.setId() calls. This
 //          work is also done in lecture 91
+// Lecture 129 - Add PetType data, set services in constructor and made them final
 
 
 import guru.springframework.sfgpetclinic.model.Owner;
+import guru.springframework.sfgpetclinic.model.PetType;
 import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.OwnerService;
+import guru.springframework.sfgpetclinic.services.PetTypeService;
 import guru.springframework.sfgpetclinic.services.VetService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -26,29 +28,46 @@ public class DataLoader implements CommandLineRunner {
     // private final OwnerService ownerService;
     // private final VetService vetService;
 
-    private OwnerService ownerService;
-    private VetService vetService;
+    private final OwnerService ownerService;
+    private final VetService vetService;
+    private final PetTypeService petTypeService;
 
-    public DataLoader() {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
         // Set as local attributes, need Spring managed bean versions
         //OwnerService = new OwnerServiceMap();
         //vetService = new VetServiceMap();
-    }
-
-    @Autowired
-    public void setOwnerService(OwnerService ownerService) {
         this.ownerService = ownerService;
+        this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
 
-    @Autowired
-    public void setVetService(VetService vetService) {
-        this.vetService = vetService;
-    }
+    // In Lecture 129, John seems to have changed to using constructor injection. I will comment
+    // out these two methods so I do it the same way. Note, changed these service attributes to
+    // be final. Had to remove the final property for setter injection.
+    //@Autowired
+    //public void setOwnerService(OwnerService ownerService) {
+    //    this.ownerService = ownerService;
+    //}
+
+    //@Autowired
+    //public void setVetService(VetService vetService) {
+    //    this.vetService = vetService;
+    //}
 
     @Override
     public void run(String... args) throws Exception {
 
-        System.out.println("Loading owners ... ");
+        System.out.println("Loading PetTypes");
+        PetType dog = new PetType();
+        dog.setName("Dog");
+        PetType savedDogPetType = petTypeService.save(dog);
+
+        PetType cat = new PetType();
+        dog.setName("Cat");
+        PetType savedCatPetType = petTypeService.save(cat);
+
+
+        System.out.println("Loading Wwners ... ");
 
         Owner owner1 = new Owner();
         // owner1.setId(1L);

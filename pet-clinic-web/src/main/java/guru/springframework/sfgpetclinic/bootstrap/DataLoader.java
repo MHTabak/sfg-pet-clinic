@@ -5,9 +5,12 @@ package guru.springframework.sfgpetclinic.bootstrap;
 // Lecture 88, issue 22, get rid of {owner/vet/}.setId() calls. This
 //          work is also done in lecture 91
 // Lecture 129 - Add PetType data, set services in constructor and made them final
+// Lecture 130 - Add contact information for Owners we create. Add a dog for Mike
+//               and a cat for Fiona
 
 
 import guru.springframework.sfgpetclinic.model.Owner;
+import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.model.PetType;
 import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.OwnerService;
@@ -15,6 +18,8 @@ import guru.springframework.sfgpetclinic.services.PetTypeService;
 import guru.springframework.sfgpetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 //import guru.springframework.sfgpetclinic.services.map.OwnerServiceMap;
 //import guru.springframework.sfgpetclinic.services.map.VetServiceMap;
@@ -73,6 +78,16 @@ public class DataLoader implements CommandLineRunner {
         // owner1.setId(1L);
         owner1.setFirstName("Michael");
         owner1.setLastName("Weston");
+        owner1.setAddress("123 Brickerel");
+        owner1.setCity("Miami");
+        owner1.setTelephone("1231231234");
+
+        Pet mikesPet = new Pet();
+        mikesPet.setPetType(savedDogPetType);
+        mikesPet.setOwner(owner1);
+        mikesPet.setBirthDate(LocalDate.now());
+        mikesPet.setName("Rosco");
+        owner1.getPets().add(mikesPet);
 
         ownerService.save(owner1);
 
@@ -80,6 +95,15 @@ public class DataLoader implements CommandLineRunner {
         // owner2.setId(2L);
         owner2.setFirstName("Fiona");
         owner2.setLastName("Glenanne");
+        owner2.setAddress("123 Brickerel");
+        owner2.setCity("Miami");
+        owner2.setTelephone("1231231234");
+
+        Pet fionasCat = new Pet();
+        fionasCat.setName("Just Cat");
+        fionasCat.setOwner(owner2);
+        fionasCat.setPetType(savedCatPetType);
+        owner2.getPets().add(fionasCat);
 
         ownerService.save(owner2);
 

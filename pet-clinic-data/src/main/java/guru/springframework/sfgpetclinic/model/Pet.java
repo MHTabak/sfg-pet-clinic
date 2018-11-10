@@ -2,14 +2,25 @@ package guru.springframework.sfgpetclinic.model;
 
 // Created Lecture 54
 // Lecture 59 Extend BaseEntity
+// Lecture 130 - Added name property
 
 import java.time.LocalDate;
 
 public class Pet extends BaseEntity {
 
+    private String name;
     private PetType petType;
     private Owner owner;
-    private LocalDate birthdate;
+    private LocalDate birthDate;
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public PetType getPetType() {
         return petType;
@@ -18,6 +29,7 @@ public class Pet extends BaseEntity {
     public void setPetType(PetType petType) {
         this.petType = petType;
     }
+
 
     public Owner getOwner() {
         return owner;
@@ -28,11 +40,11 @@ public class Pet extends BaseEntity {
     }
 
     public LocalDate getBirthdate() {
-        return birthdate;
+        return birthDate;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
 }

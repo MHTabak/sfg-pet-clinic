@@ -6,12 +6,15 @@ package guru.springframework.sfgpetclinic.services.map;
 // Lecture 88, issue 22, get rid of object.getId() in param in
 //     super.save(object.getId() , object).
 // Lecture 91 work for this lecture done under lecture 88
+// Lecture 130 - Added @Service
 
 import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.services.PetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
 
     @Override

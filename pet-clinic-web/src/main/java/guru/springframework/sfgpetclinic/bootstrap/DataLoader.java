@@ -6,15 +6,18 @@ package guru.springframework.sfgpetclinic.bootstrap;
 //          work is also done in lecture 91
 // Lecture 129 - Add PetType data, set services in constructor and made them final
 // Lecture 130 - Add contact information for Owners we create. Add a dog for Mike
-//               and a cat for Fiona
+//                 and a cat for Fiona
+// Lecture 132 - Add Specialties to Owners.
+//             -  Refactor code from run() method into
+//                  loadData() method. Call loadData() from run(). Only call loadData()
+//                  if no data exists. We test for the existence of PetTypes to indicate
+//                  if data exists
 
 
-import guru.springframework.sfgpetclinic.model.Owner;
-import guru.springframework.sfgpetclinic.model.Pet;
-import guru.springframework.sfgpetclinic.model.PetType;
-import guru.springframework.sfgpetclinic.model.Vet;
+import guru.springframework.sfgpetclinic.model.*;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
+import guru.springframework.sfgpetclinic.services.SpecialtyService;
 import guru.springframework.sfgpetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -36,14 +39,17 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final SpecialtyService specialtyService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
+                      SpecialtyService specialtyService) {
         // Set as local attributes, need Spring managed bean versions
         //OwnerService = new OwnerServiceMap();
         //vetService = new VetServiceMap();
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.specialtyService = specialtyService;
     }
 
     // In Lecture 129, John seems to have changed to using constructor injection. I will comment
@@ -62,6 +68,18 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        // If there are no PetTypes, we assume there is not data,
+        // call loadData()
+        int count = petTypeService.findAll().size();
+
+        if (count == 0) {
+            loadData();
+        }
+
+    }
+
+    private void loadData() {
+
         System.out.println("Loading PetTypes");
         PetType dog = new PetType();
         dog.setName("Dog");
@@ -71,8 +89,20 @@ public class DataLoader implements CommandLineRunner {
         dog.setName("Cat");
         PetType savedCatPetType = petTypeService.save(cat);
 
+        System.out.println("Loading specialties");
+        Specialty radiology = new Specialty();
+        radiology.setDescription("Radiology");
+        Specialty savedRadiology = specialtyService.save(radiology);
 
-        System.out.println("Loading Wwners ... ");
+        Specialty surgery = new Specialty();
+        surgery.setDescription("Surgery");
+        Specialty savedSurgery = specialtyService.save(surgery);
+
+        Specialty dentistry = new Specialty();
+        dentistry.setDescription("Dentistry");
+        Specialty savedDentistry = specialtyService.save(dentistry);
+
+        System.out.println("Loading Owners ... ");
 
         Owner owner1 = new Owner();
         // owner1.setId(1L);
@@ -113,6 +143,7 @@ public class DataLoader implements CommandLineRunner {
         // vet1.setId(1L);
         vet1.setFirstName("Sam");
         vet1.setLastName("Axe");
+        vet1.getSpecialties().add(savedRadiology);
 
         vetService.save(vet1);
 
@@ -120,9 +151,9 @@ public class DataLoader implements CommandLineRunner {
         // vet2.setId(2L);
         vet2.setFirstName("Jessie");
         vet2.setLastName("Porter");
+        vet2.getSpecialties().add(savedSurgery);
 
         vetService.save(vet2);
-
     }
 
 }

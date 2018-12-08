@@ -5,10 +5,13 @@ package guru.springframework.sfgpetclinic.model;
 // Lecture 130 - Added name property
 // Lecture 153 - Annotate class with @Entity and @Table. Add @Column to properties,
 //               and ManyToOne to the PetType property
+// Lecture 155 - Issue #38. Add Visit object and map it. Add getters/setters for visits
 
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "pets")
@@ -28,6 +31,10 @@ public class Pet extends BaseEntity {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    private Set<Visit> visits = new HashSet<>();
+
+
 
     public String getName() {
         return name;
@@ -45,7 +52,6 @@ public class Pet extends BaseEntity {
         this.petType = petType;
     }
 
-
     public Owner getOwner() {
         return owner;
     }
@@ -62,4 +68,11 @@ public class Pet extends BaseEntity {
         this.birthDate = birthDate;
     }
 
+    public Set<Visit> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(Set<Visit> visits) {
+        this.visits = visits;
+    }
 }

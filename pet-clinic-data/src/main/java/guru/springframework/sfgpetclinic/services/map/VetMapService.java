@@ -10,6 +10,7 @@ package guru.springframework.sfgpetclinic.services.map;
 // Lecture 132 - Add code to save so that if we get a Vet that has a specialty with no id
 //                 we save that specialty, which creates an id. We then set the Id on our
 //                 specialty.
+// Lecture 161 - Renamed from VetServiceMap for consistency
 
 
 import guru.springframework.sfgpetclinic.model.Specialty;
@@ -21,11 +22,11 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 @Service
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
+public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
 
     private final SpecialtyService specialtyService;
 
-    public VetServiceMap(SpecialtyService specialtyService) {
+    public VetMapService(SpecialtyService specialtyService) {
         this.specialtyService = specialtyService;
     }
 

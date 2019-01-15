@@ -10,6 +10,7 @@ package guru.springframework.sfgpetclinic.services.map;
 // Lecture 91 - work for this was done under lecture 88
 // Lecture 130 - Add PetTypeService and PetService. Modify the save(Owner object) method
 //                  to check for null object
+// Lecture 161 - Renamed from OwnerServiceMap.java for consistency
 
 import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.model.Pet;
@@ -21,12 +22,12 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 @Service
-public class OwnerServiceMap extends AbstractMapService<Owner, Long>  implements OwnerService {
+public class OwnerMapService extends AbstractMapService<Owner, Long>  implements OwnerService {
 
     private final PetTypeService petTypeService;
     private final PetService petService;
 
-    public OwnerServiceMap(PetTypeService petTypeService, PetService petService) {
+    public OwnerMapService(PetTypeService petTypeService, PetService petService) {
         this.petTypeService = petTypeService;
         this.petService = petService;
     }

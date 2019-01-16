@@ -5,6 +5,10 @@ package guru.springframework.sfgpetclinic.model;
 //             set up mapping bewtween pet in this entity and the Pet entity in Pet.java
 // Lecture 163 - Added getter method for Pet for issue 46 so Visit service can get the
 //             Pet
+// Lecture 164 - Had to add a constructor to take a Pet as a parameter. This was so
+//             we cold load data in the DataLoader class. Had to also add setDescription()
+//             for same reason. John had this in his code, mine was missing it. Not sure why,
+//             but it's a concern, what else is missing?
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,6 +26,14 @@ public class Visit extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "pet_id")
     private Pet pet;
+
+    public Visit(Pet pet) {
+        this.pet = pet;
+    }
+
+    public void setDescription(String desc) {
+        this.description = desc;
+    }
 
     public LocalDate getDate() {
         return date;

@@ -12,13 +12,11 @@ package guru.springframework.sfgpetclinic.bootstrap;
 //                  loadData() method. Call loadData() from run(). Only call loadData()
 //                  if no data exists. We test for the existence of PetTypes to indicate
 //                  if data exists
+// Lecture 164 - Add VisitService and code to load some Visit entities
 
 
 import guru.springframework.sfgpetclinic.model.*;
-import guru.springframework.sfgpetclinic.services.OwnerService;
-import guru.springframework.sfgpetclinic.services.PetTypeService;
-import guru.springframework.sfgpetclinic.services.SpecialtyService;
-import guru.springframework.sfgpetclinic.services.VetService;
+import guru.springframework.sfgpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -40,9 +38,10 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
     public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
-                      SpecialtyService specialtyService) {
+                      SpecialtyService specialtyService, VisitService visitService) {
         // Set as local attributes, need Spring managed bean versions
         //OwnerService = new OwnerServiceMap();
         //vetService = new VetServiceMap();
@@ -50,6 +49,7 @@ public class DataLoader implements CommandLineRunner {
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     // In Lecture 129, John seems to have changed to using constructor injection. I will comment
@@ -80,7 +80,7 @@ public class DataLoader implements CommandLineRunner {
 
     private void loadData() {
 
-        System.out.println("Loading PetTypes");
+        System.out.println("Loading PetTypes ...");
         PetType dog = new PetType();
         dog.setName("Dog");
         PetType savedDogPetType = petTypeService.save(dog);
@@ -89,7 +89,7 @@ public class DataLoader implements CommandLineRunner {
         dog.setName("Cat");
         PetType savedCatPetType = petTypeService.save(cat);
 
-        System.out.println("Loading specialties");
+        System.out.println("Loading specialties ...");
         Specialty radiology = new Specialty();
         radiology.setDescription("Radiology");
         Specialty savedRadiology = specialtyService.save(radiology);
@@ -136,6 +136,13 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(fionasCat);
 
         ownerService.save(owner2);
+
+        // Lecture 164 create a Visit for Fiona's cat
+        System.out.println("Loading Visits ...");
+        Visit catVisit = new Visit(fionasCat);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezy Kitty");
+        visitService.save(catVisit);
 
         System.out.println("Loading Vets ...");
 

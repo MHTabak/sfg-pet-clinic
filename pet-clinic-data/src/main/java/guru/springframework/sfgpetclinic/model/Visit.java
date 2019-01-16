@@ -1,8 +1,10 @@
 package guru.springframework.sfgpetclinic.model;
 
 // Created in Leture 125
-// Lecture 155 Issue 38. Make Visit a Hibernate entity set Table and Column names
-//        set up mapping bewtween pet in this entity and the Pet entity in Pet.java
+// Lecture 155 - Issue 38. Make Visit a Hibernate entity set Table and Column names
+//             set up mapping bewtween pet in this entity and the Pet entity in Pet.java
+// Lecture 163 - Added getter method for Pet for issue 46 so Visit service can get the
+//             Pet
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,6 +29,10 @@ public class Visit extends BaseEntity {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public Pet getPet() {
+        return pet;
     }
 
 }

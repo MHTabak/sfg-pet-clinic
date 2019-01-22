@@ -11,17 +11,21 @@ package guru.springframework.sfgpetclinic.services.map;
 // Lecture 130 - Add PetTypeService and PetService. Modify the save(Owner object) method
 //                  to check for null object
 // Lecture 161 - Renamed from OwnerServiceMap.java for consistency
+// Lecture 165 - Add @Profile({“default”, “map” }) so this class is only implemented if
+//               the "default" or "map" profiles are active.
 
 import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.PetService;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long>  implements OwnerService {
 
     private final PetTypeService petTypeService;
@@ -43,9 +47,9 @@ public class OwnerMapService extends AbstractMapService<Owner, Long>  implements
         return super.findById(id);
     }
 
-    // Lecture 130 - If an owner has no pets (null per list), Persist the Onwer
+    // Lecture 130 - If an owner has no pets (null per list), Persist the Owner
     // If the owner has pets, iterate over the pits, and for each pet,
-    //    see if the PetType is null, throw and exeception - musgt have a PetType
+    //    see if the PetType is null, throw and exception - must have a PetType
     //    If the PetType is not null, see if the PetType has an id
     //    If there is no id for the PetType, set the PetType id to the value
     //      returned by persisting the PetType

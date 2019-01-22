@@ -11,17 +11,21 @@ package guru.springframework.sfgpetclinic.services.map;
 //                 we save that specialty, which creates an id. We then set the Id on our
 //                 specialty.
 // Lecture 161 - Renamed from VetServiceMap for consistency
+// Lecture 165 - Annotate with @Profile({"default", "map" }) so this class is only
+//               implemented if the default or map profile is active
 
 
 import guru.springframework.sfgpetclinic.model.Specialty;
 import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.SpecialtyService;
 import guru.springframework.sfgpetclinic.services.VetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "map" })
 public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
 
     private final SpecialtyService specialtyService;

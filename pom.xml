@@ -33,14 +33,13 @@
     <dependencies>
 
         <!-- Moved actuator dependency to web module -->
-        <!-- <oved jpa dependency to data module -->
+        <!-- moved jpa dependency to data module -->
 
-        <!-- Move spring-boot-starter0web into web module -->
         <!-- Move spring-boot-starter-web into web module -->
 
-        <!-- Lecture 55 Moved dependency sproing-boot-devtools to web module -->
+        <!-- Lecture 55 Moved dependency spring-boot-devtools to web module -->
 
-        <!-- Lect 55 move H2 db, MySQL connctor and Lombok dep.s to data module -->
+        <!-- Lect 55 move H2 db, MySQL connector and Lombok dep.s to data module -->
 
         <!-- Lecture 55 Moved spring-boot-starter to web module -->
 

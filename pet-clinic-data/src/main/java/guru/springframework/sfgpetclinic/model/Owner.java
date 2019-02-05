@@ -1,17 +1,31 @@
 package guru.springframework.sfgpetclinic.model;
 
 // Created Lecture 54
-// Lecture 125 Add Pets, address, city, telephone
-// Lecture 130 Modify declaration of Pets list to crete empty list
-// Lecture 153 Annotate class with @Entity. Add @Table. Declare column
-//         names for the properties. Set up a OneToMany relationship
-//         between Pets and Owners.
+// Lecture 125 - Add Pets, address, city, telephone
+// Lecture 130 - Modify declaration of Pets list to crete empty list
+// Lecture 153 - Annotate class with @Entity. Add @Table. Declare column
+//                 names for the properties. Set up a OneToMany relationship
+//                 between Pets and Owners.
+// Lecture 174 - Annotate class with @Setter, @Getter, @NoArgsConstructor, @AllArgsConstructor,
+//                 and @Builder for Lombok. Remove getter/setter code.
+//               To get functionality of Builder, create a constructor that has all the params
+//                 of Owner, Person, and BaseEntity. Move @Builder annotation from class level
+//                 to that constructor. Constructor calls super(id, firstName, lastName)
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Setter
+@Getter
+@NoArgsConstructor
+// @AllArgsConstructor
+// @Builder
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {
@@ -28,36 +42,12 @@ public class Owner extends Person {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
+    @Builder
+    public Owner(Long id, String firstName, String lastName, String address, String city, String telephone, Set<Pet> pets) {
+        super(id, firstName, lastName);
         this.address = address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
         this.city = city;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
         this.telephone = telephone;
-    }
-
-    public Set<Pet> getPets() {
-        return pets;
-    }
-
-    public void setPets(Set<Pet> pets) {
         this.pets = pets;
     }
-
 }

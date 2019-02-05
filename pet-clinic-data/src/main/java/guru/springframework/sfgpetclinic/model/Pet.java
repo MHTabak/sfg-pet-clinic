@@ -6,13 +6,21 @@ package guru.springframework.sfgpetclinic.model;
 // Lecture 153 - Annotate class with @Entity and @Table. Add @Column to properties,
 //               and ManyToOne to the PetType property
 // Lecture 155 - Issue #38. Add Visit object and map it. Add getters/setters for visits
+// Lecture 174 - Annotate class with @Setter, @Getter, @NoArgsConstructor, @AllArgsConstructor,
+//                 and @Builder for Lombok
 
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "pets")
 public class Pet extends BaseEntity {

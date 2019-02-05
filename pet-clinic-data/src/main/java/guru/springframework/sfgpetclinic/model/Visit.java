@@ -9,10 +9,19 @@ package guru.springframework.sfgpetclinic.model;
 //             we cold load data in the DataLoader class. Had to also add setDescription()
 //             for same reason. John had this in his code, mine was missing it. Not sure why,
 //             but it's a concern, what else is missing?
+// Lecture 174 - Annotate class with @Setter, @Getter, @NoArgsConstructor, @AllArgsConstructor,
+//                 and @Builder for Lombok. Remove getter/setter code
+
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "visits")
 public class Visit extends BaseEntity {
@@ -31,20 +40,8 @@ public class Visit extends BaseEntity {
         this.pet = pet;
     }
 
-    public void setDescription(String desc) {
-        this.description = desc;
-    }
-
     public LocalDate getDate() {
         return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public Pet getPet() {
-        return pet;
     }
 
 }

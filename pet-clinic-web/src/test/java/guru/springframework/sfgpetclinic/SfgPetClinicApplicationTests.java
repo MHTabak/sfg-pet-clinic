@@ -1,15 +1,23 @@
 package guru.springframework.sfgpetclinic;
 
+// Lecture 189 - Convert for JUnit 5. Removed imports
+//                     org.junit.jupiter.api.Test
+//                     org.junit.jupiter.RunWith
+//                  Remove @RunWith. Added @ExtendWith and added new import
+//                     for @Test
 
-public class SfgPetClinicApplicationTests {
+// Original version
+//public class SfgPetClinicApplicationTests {
+//
+//    public void contextLoads() {
+//
+//    }
+//
+//}
 
-    public void contextLoads() {
+// Came back to this code in lecture 189. This was commented out. The
+// code above was uncommented
 
-    }
-
-}
-
-/*
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,4 +33,4 @@ public class SfgPetClinicApplicationTests {
     }
 
 }
-*/
+

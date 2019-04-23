@@ -16,7 +16,7 @@
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
     </properties>
 
-    <!-- Lecture 55 Add dependencies after creating moduld -->
+    <!-- Lecture 55 Add dependencies after creating module -->
     <dependencies>
         <!-- Moved from main module -->
         <dependency>
@@ -62,12 +62,7 @@
             <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.junit.jupiter</groupId>-->
-<!--            <artifactId>junit-jupiter-api</artifactId>-->
-<!--            <version>5.3.1</version>    &lt;!&ndash; was 5.0.3, but that was not found xxxmht &ndash;&gt;-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>

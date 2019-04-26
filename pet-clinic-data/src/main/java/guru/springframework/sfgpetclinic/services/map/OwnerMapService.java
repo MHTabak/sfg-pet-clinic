@@ -13,6 +13,7 @@ package guru.springframework.sfgpetclinic.services.map;
 // Lecture 161 - Renamed from OwnerServiceMap.java for consistency
 // Lecture 165 - Add @Profile({“default”, “map” }) so this class is only implemented if
 //               the "default" or "map" profiles are active.
+// Lecture 191 - Implement findByLastName() for testing
 
 import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.model.Pet;
@@ -93,7 +94,13 @@ public class OwnerMapService extends AbstractMapService<Owner, Long>  implements
 
     @Override
     public Owner findByLastName(String lastName) {
-        return null;
+
+        return this.findAll()
+                .stream()
+                .filter(owner -> owner.getLastName().equalsIgnoreCase(lastName))
+                .findFirst()
+                .orElse(null);
+
     }
 
 }

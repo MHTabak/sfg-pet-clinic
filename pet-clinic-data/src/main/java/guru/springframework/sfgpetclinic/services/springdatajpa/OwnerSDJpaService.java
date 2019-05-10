@@ -28,7 +28,6 @@ public class OwnerSDJpaService implements OwnerService {
         this.petTypeRepository = petTypeRepository;
     }
 
-
     @Override
     public Owner findByLastName(String name) {
         return ownerRepository.findByLastName(name);

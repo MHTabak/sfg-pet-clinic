@@ -39,7 +39,7 @@ public class OwnerController {
 
     // Lecture 133 Add method to handle the Ownwer search
     // URL just calls the notimplemented.html template
-    @RequestMapping({"/find", "/oups"})
+    @RequestMapping({"/find", "/oops"})
     public String findOwners() {
 
         return "notimplemented";
